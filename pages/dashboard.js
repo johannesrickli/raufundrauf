@@ -7,14 +7,11 @@ export default function Dashboard() {
   const [betragProHM, setBetragProHM] = useState(0);
 
   useEffect(() => {
-    // Fetch user profile
     fetch("/api/me").then(res => res.json()).then(setProfile);
-    // Fetch Strava tracks (simuliert)
     fetch("/api/strava").then(res => res.json()).then(data => {
       setTracks(data.tracks);
       setGesamtHoehenmeter(data.totalElevation);
     });
-    // Fetch user spend amount
     fetch("/api/me").then(res => res.json()).then(data => setBetragProHM(data.betragProHM));
   }, []);
 
